@@ -1,10 +1,15 @@
+import Content from "./components/Content"
+import Header from "./components/Header"
 
 
 function App() {
 
   return (
     <>
-      <h1 className="font-space text-6xl text-orange-400">que pedo wey</h1>
+      <Header />
+      <main className="h-auto flex items-center justify-center">
+        <Content />
+      </main>
     </>
   )
 }
