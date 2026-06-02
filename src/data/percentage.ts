@@ -6,6 +6,4 @@ export const percentage : Percentage[] = [
     { percentage: 15},
     { percentage: 20},
     { percentage: 50},
-    
 ]
-
