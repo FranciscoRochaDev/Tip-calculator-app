@@ -1,12 +1,10 @@
 
 export type Bill = {
     bill: number,
-    tip: number,
-    people: number
+    customerTip: number,
+    numberOfPeople: number
 }
 
 export type Percentage = {
     percentage: number;
-} 
-
-
+}

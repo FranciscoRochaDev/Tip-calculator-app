@@ -3,6 +3,7 @@ import { percentage } from "../data/percentage";
 import FormNumber from "./FormNumber";
 import ResultContainer from "./ResultContainer";
 import Tip from "./Tip";
+import { calculateTipPerson, calculateTotalPerson } from "../helpers";
 
 
 export default function Content(){
@@ -11,6 +12,21 @@ export default function Content(){
     const [numberOfPeople, setNumberOfPeople] = useState<number | ''>('')
     const [customerTip, setCustomerTip] = useState<number | undefined>(undefined)
 
+    const tipPerson = bill && customerTip && numberOfPeople
+        ? calculateTipPerson(bill, customerTip, numberOfPeople)
+        : 0
+
+    const totalPerson = bill && customerTip && numberOfPeople
+        ? calculateTotalPerson(bill, customerTip, numberOfPeople)
+        : 0
+
+    const hasValue = bill !== '' || numberOfPeople !== '' || customerTip !== undefined
+
+    function handleReset() {
+        setBill('')
+        setCustomerTip(undefined)
+        setNumberOfPeople('')
+    }
 
     return (
         <div className="bg-white w-full lg:max-w-5xl rounded-t-3xl md:rounded-3xl
@@ -50,7 +66,12 @@ export default function Content(){
                 />
             </div>
 
-            <ResultContainer />
+            <ResultContainer
+                tipPerson={tipPerson}
+                totalPerson={totalPerson}
+                hasValue={hasValue}
+                handleReset={handleReset}
+            />
         </div>
     )
 
