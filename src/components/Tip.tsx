@@ -1,4 +1,4 @@
-import type { ChangeEvent, MouseEvent } from "react"
+import type { ChangeEvent } from "react"
 
 type TipProps = {
     tip?: number
@@ -11,14 +11,9 @@ const baseClass = `max-w-2xl w-full h-12 rounded-md font-space font-bold text-2x
 
 export default function Tip({ tip, customerTip, isCustom, setCustomerTip }: TipProps) {
 
-    // Handle Click on Tip Button
-    function handleCustomerTip(e: MouseEvent<HTMLButtonElement>) {
-        if (setCustomerTip) {
-            const value = e.currentTarget.textContent
-            if (value) {
-                const numberValue = parseInt(value.replace('%', ''), 10)
-                setCustomerTip(numberValue)
-            }
+    function handleCustomerTip() {
+        if (setCustomerTip && tip !== undefined) {
+            setCustomerTip(tip)
         }
     }
 
@@ -48,10 +43,8 @@ export default function Tip({ tip, customerTip, isCustom, setCustomerTip }: TipP
 
     return (
         <button
-            className={`${baseClass} bg-green-900 text-white
-            ${isSelected ? 'bg-green-400 text-green-900' : 'bg-green-900 text-white'}
-            hover:bg-grey-200 hover:text-green-900 transition-normal cursor-pointer
-            outline-none`}
+            className={`${baseClass} ${isSelected ? 'bg-green-400 text-green-800' : 'bg-green-900 text-white'}
+            hover:bg-grey-200 hover:text-green-900 transition-normal cursor-pointer outline-none`}
             onClick={handleCustomerTip}
         >
             {tip}%
